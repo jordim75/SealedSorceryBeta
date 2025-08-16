@@ -2,7 +2,8 @@ from flask import Flask, render_template, jsonify
 import pandas as pd
 import random
 import io
-from flask import Response
+from flask import send_file
+from openpyxl import Workbook
 
 app = Flask(__name__)
 
@@ -52,24 +53,32 @@ def index():
 def sobres(n):
     return jsonify([generar_sobre() for _ in range(n)])
 
-@app.route("/export_csv/<int:n>")
-def export_csv(n):
-    sobres = [generar_sobre() for _ in range(n)]
+@app.route("/export_xlsx/<int:jocs>/<int:sobres>")
+def export_xlsx(jocs, sobres):
+    wb = Workbook()
 
-    output = io.StringIO()
-    # Capçalera
-    output.write("Sobre,Posicio,Carta\n")
-    for i, sobre in enumerate(sobres, start=1):
-        for j, carta in enumerate(sobre, start=1):
-            output.write(f"{i},{j},{carta}\n")
+    for jugador in range(1, jocs+1):
+        if jugador == 1:
+            ws = wb.active
+            ws.title = f"Jugador {jugador}"
+        else:
+            ws = wb.create_sheet(title=f"Jugador {jugador}")
 
-    csv_data = output.getvalue()
-    output.close()
+        ws.append(["Sobre", "Posicio", "Carta"])
+        for s in range(1, sobres+1):
+            sobre = generar_sobre()
+            for j, carta in enumerate(sobre, start=1):
+                ws.append([s, j, carta])
 
-    return Response(
-        csv_data,
-        mimetype="text/csv",
-        headers={"Content-Disposition": "attachment;filename=sobres.csv"}
+    output = io.BytesIO()
+    wb.save(output)
+    output.seek(0)
+
+    return send_file(
+        output,
+        as_attachment=True,
+        download_name="lots_jugadors.xlsx",
+        mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
 
 if __name__ == "__main__":
