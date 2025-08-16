@@ -3,13 +3,13 @@ Battlemage,Elite
 Deathspeaker,Elite
 Elementalist,Elite
 Enchantress,Elite
-Flamecaller,Booster
-Geomancer,Booster
+Flamecaller,BoosterAvatar
+Geomancer,BoosterAvatar
 Pathfinder,Unique
 Seer,Elite
-Sorcerer,Booster
-Sparkmage,Booster
-Waveshaper,Booster
+Sorcerer,BoosterAvatar
+Sparkmage,BoosterAvatar
+Waveshaper,BoosterAvatar
 Abundance,Elite
 Atlantean Fate,Unique
 Blizzard,Ordinary
@@ -336,7 +336,7 @@ Whirling Blades,Exceptional
 Windblast,Exceptional
 Wrath of the Sea,Elite
 Aqueduct,Exceptional
-Arid Desert,Ordinary
+Arid Desert,Booster
 Astral Alcazar,Elite
 Autumn River,Booster
 Battlefield,Elite
@@ -390,7 +390,7 @@ Smokestacks of Gnaak,Unique
 Spring River,Booster
 Standing Stones,Elite
 Steppe,Exceptional
-Summer River,Ordinary
+Summer River,Booster
 Tadpole Pool,Unique
 The Colour Out of Space,Unique
 The Geistwood,Unique
