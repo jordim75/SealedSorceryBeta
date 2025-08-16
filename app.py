@@ -48,7 +48,7 @@ def generar_sobre():
 def index():
     return render_template("index.html")
 
-@app.route("/sobre/<int:n>")
+@app.route("/Pack/<int:n>")
 def sobres(n):
     return jsonify([generar_sobre() for _ in range(n)])
 
