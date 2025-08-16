@@ -14,8 +14,18 @@
 <body>
   <h1>Generate Booster Packs</h1>
 
-  <label for="quantitat"># of Booster Packs:</label>
-  <select id="quantitat">
+  <label for="jugadors">Players:</label>
+  <select id="jugadors">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+</select>
+
+  <label for="sobres"># of Booster Packs:</label>
+  <select id="sobres">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -25,13 +35,13 @@
   </select>
 
   <button onclick="obrirSobres()">Generate</button>
-  <button onclick="exportarCSV()">CSV Download</button>
+  <button onclick="exportarXLSX()">XLSX DownLoad</button>
 
   <div id="resultat"></div>
 
   <script>
     async function obrirSobres() {
-      const n = document.getElementById("quantitat").value;
+      const n = document.getElementById("sobres").value;
       const res = await fetch(`/sobre/${n}`);
       const sobres = await res.json();
 
@@ -45,10 +55,11 @@
       document.getElementById("resultat").innerHTML = html;
       
     }
-        function exportarCSV() {
-      const n = document.getElementById("quantitat").value;
-      window.location.href = `/export_csv/${n}`;
-    }
+         function exportarXLSX() {
+    const j = document.getElementById("jugadors").value;
+    const s = document.getElementById("sobres").value;
+    window.location.href = `/export_xlsx/${j}/${s}`;
+  }
   </script>
 </body>
 </html>
