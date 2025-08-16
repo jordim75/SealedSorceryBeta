@@ -18,9 +18,7 @@ cartes_per_tipus = {
 def generar_sobre():
     sobre = []
 
-    # 12 Ordinary
-    sobre.extend(random.sample(cartes_per_tipus["Ordinary"], 12))
-
+    
     # 3 Exceptional
     sobre.extend(random.sample(cartes_per_tipus["Exceptional"], 3))
 
@@ -29,6 +27,13 @@ def generar_sobre():
         sobre.append(random.choice(cartes_per_tipus["Elite"]))
     else:  # 24% Unique
         sobre.append(random.choice(cartes_per_tipus["Unique"]))
+        
+    # 11 Ordinary
+    sobre.extend(random.sample(cartes_per_tipus["Ordinary"], 11))
+
+    # 1 Booster
+    sobre.extend(random.sample(cartes_per_tipus["Booster"], 1))
+    
 
     return sobre
 
