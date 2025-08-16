@@ -5,7 +5,7 @@ import random
 app = Flask(__name__)
 
 # Carregar les cartes des del CSV
-cartes_df = pd.read_csv("cartes.csv")
+cartes_df = pd.read_csv("FontBeta.csv")
 
 # Separar cartes segons tipus
 cartes_per_tipus = {
