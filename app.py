@@ -74,9 +74,9 @@ def export_xlsx(jocs, sobres):
             cartes_jugador.extend(generar_sobre())
 
         # Filtrar per categoria
-        avatars = [c["nom"] for c in cartes_jugador if c["cat"] == "Avatar"]
+        avatars = sorted([c["nom"] for c in cartes_jugador if c["cat"] == "Avatar"])
         spells  = [c for c in cartes_jugador if c["cat"] == "Spell"]
-        sites   = [c["nom"] for c in cartes_jugador if c["cat"] == "Site"]
+        sites   = sorted([c["nom"] for c in cartes_jugador if c["cat"] == "Site"])
 
         # Ordenar Spells per element i nom
         spells_sorted = sorted(
@@ -84,7 +84,7 @@ def export_xlsx(jocs, sobres):
             key=lambda c: (elem_order.get(c["elem"], 99), c["nom"])
         )
         # Només noms amb element entre claudàtors
-        spells_names = [f"{c['nom']} [{c['elem']}]" for c in spells_sorted]
+        spells_names = [f"{c['nom']}" for c in spells_sorted]
 
         # Trobar la longitud màxima de les columnes
         max_len = max(len(avatars), len(spells_names), len(sites))
