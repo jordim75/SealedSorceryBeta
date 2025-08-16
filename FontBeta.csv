@@ -3,13 +3,13 @@ Battlemage,Elite
 Deathspeaker,Elite
 Elementalist,Elite
 Enchantress,Elite
-Flamecaller,Ordinary
-Geomancer,Ordinary
+Flamecaller,Booster
+Geomancer,Booster
 Pathfinder,Unique
 Seer,Elite
-Sorcerer,Ordinary
-Sparkmage,Ordinary
-Waveshaper,Ordinary
+Sorcerer,Booster
+Sparkmage,Booster
+Waveshaper,Booster
 Abundance,Elite
 Atlantean Fate,Unique
 Blizzard,Ordinary
@@ -338,15 +338,15 @@ Wrath of the Sea,Elite
 Aqueduct,Exceptional
 Arid Desert,Ordinary
 Astral Alcazar,Elite
-Autumn River,Ordinary
-https://curiosa.io/cards/battlefield,Elite
+Autumn River,Booster
+Battlefield,Elite
 Bedrock,Exceptional
 Boneyard,Unique
 Bottomless Pit,Elite
 Cloud City,Unique
 Cornerstone,Exceptional
 Crossroads,Elite
-Dark Tower,Ordinary
+Dark Tower,Booster
 Dome of Osiros,Unique
 Donnybrook Inn,Unique
 Dwarven Forge,Elite
@@ -354,15 +354,15 @@ Edge of the World,Elite
 Floodplain,Exceptional
 Free City,Exceptional
 Gnome Hollows,Exceptional
-Gothic Tower,Ordinary
+Gothic Tower,Booster
 Great Wall,Unique
 Holy Ground,Exceptional
-Humble Village,Ordinary
+Humble Village,Booster
 Iceberg,Exceptional
 Imperial Road,Elite
 Kingdom of Agartha,Unique
 Lighthouse,Exceptional
-Lone Tower,Ordinary
+Lone Tower,Booster
 Maelström,Unique
 Mirage,Elite
 Mirror Realm,Unique
@@ -375,19 +375,19 @@ Planar Gate,Elite
 Primordial Spring,Elite
 Pristine Paradise,Unique
 Quagmire,Exceptional
-Red Desert,Ordinary
-Remote Desert,Ordinary
+Red Desert,Booster
+Remote Desert,Booster
 Rift Valley,Elite
 River of Flame,Unique
 Roots of Yggdrasil,Unique
 Ruins,Exceptional
-Rustic Village,Ordinary
+Rustic Village,Booster
 Secret Tunnel,Exceptional
 Shifting Sands,Exceptional
-Simple Village,Ordinary
+Simple Village,Booster
 Sinkhole,Elite
 Smokestacks of Gnaak,Unique
-Spring River,Ordinary
+Spring River,Booster
 Standing Stones,Elite
 Steppe,Exceptional
 Summer River,Ordinary
