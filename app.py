@@ -46,9 +46,9 @@ def generar_sobre():
 def index():
     return render_template("index.html")
 
-@app.route("/sobre")
-def sobre():
-    return jsonify(generar_sobre())
+@app.route("/sobre/<int:n>")
+def sobres(n):
+    return jsonify([generar_sobre() for _ in range(n)])
 
 if __name__ == "__main__":
     app.run(debug=True)
