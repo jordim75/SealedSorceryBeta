@@ -12,12 +12,12 @@ cartes_df = pd.read_csv("FontBeta.csv")
 
 # Separar cartes segons tipus
 cartes_per_tipus = {
-    "Ordinary": cartes_df[cartes_df["tipus"] == "Ordinary"]["nom"].tolist(),
-    "Booster": cartes_df[cartes_df["tipus"] == "Booster"]["nom"].tolist(),
-    "BoosterAvatar": cartes_df[cartes_df["tipus"] == "BoosterAvatar"]["nom"].tolist(),
-    "Exceptional": cartes_df[cartes_df["tipus"] == "Exceptional"]["nom"].tolist(),
-    "Elite": cartes_df[cartes_df["tipus"] == "Elite"]["nom"].tolist(),
-    "Unique": cartes_df[cartes_df["tipus"] == "Unique"]["nom"].tolist(),
+    "Ordinary": cartes_df[cartes_df["tipus"] == "Ordinary"]["nom"].to_dict(orient="records"),
+    "Booster": cartes_df[cartes_df["tipus"] == "Booster"]["nom"].to_dict(orient="records"),
+    "BoosterAvatar": cartes_df[cartes_df["tipus"] == "BoosterAvatar"]["nom"].to_dict(orient="records"),
+    "Exceptional": cartes_df[cartes_df["tipus"] == "Exceptional"]["nom"].to_dict(orient="records"),
+    "Elite": cartes_df[cartes_df["tipus"] == "Elite"]["nom"].to_dict(orient="records"),
+    "Unique": cartes_df[cartes_df["tipus"] == "Unique"]["nom"].to_dict(orient="records"),
 }
 
 def generar_sobre():
@@ -64,12 +64,11 @@ def export_xlsx(jocs, sobres):
         else:
             ws = wb.create_sheet(title=f"Jugador {jugador}")
 
-        ws.append(["Sobre", "Posicio", "Carta"])
+        ws.append(["Sobre", "Posicio", "Nom", "Tipus", "Cat", "Elem"])
         for s in range(1, sobres+1):
             sobre = generar_sobre()
             for j, carta in enumerate(sobre, start=1):
-                ws.append([s, j, carta])
-
+                ws.append([s, j, carta['nom'], carta['tipus'], carta['cat'], carta['elem']])
     output = io.BytesIO()
     wb.save(output)
     output.seek(0)
