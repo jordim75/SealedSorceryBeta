@@ -62,11 +62,30 @@ def export_xlsx(jocs, sobres):
         else:
             ws = wb.create_sheet(title=f"Jugador {jugador}")
 
-        ws.append(["Sobre", "Posicio", "Nom", "Tipus", "Cat", "Elem"])
-        for s in range(1, sobres+1):
-            sobre = generar_sobre()
-            for j, carta in enumerate(sobre, start=1):
-                ws.append([s, j, carta['nom'], carta['tipus'], carta['cat'], carta['elem']])
+        # Capsaleres
+        ws.append(["Avatars", "Spells", "Sites"])
+
+        # Generar tots els sobres del jugador
+        cartes_jugador = []
+        for _ in range(sobres):
+            cartes_jugador.extend(generar_sobre())
+
+        # Filtrar per categoria
+        avatars = [c["nom"] for c in cartes_jugador if c["cat"] == "Avatar"]
+        spells  = [c["nom"] for c in cartes_jugador if c["cat"] == "Spell"]
+        sites   = [c["nom"] for c in cartes_jugador if c["cat"] == "Site"]
+
+        # Posar-los en columnes
+        max_len = max(len(avatars), len(spells), len(sites))
+        for i in range(max_len):
+            fila = [
+                avatars[i] if i < len(avatars) else "",
+                spells[i] if i < len(spells) else "",
+                sites[i] if i < len(sites) else "",
+            ]
+            ws.append(fila)
+
+    # Guardar a memòria i retornar com a fitxer
     output = io.BytesIO()
     wb.save(output)
     output.seek(0)
@@ -77,6 +96,7 @@ def export_xlsx(jocs, sobres):
         download_name="lots_jugadors.xlsx",
         mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
+
 
 if __name__ == "__main__":
     app.run(debug=True)
