@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <title>Obrir sobres de cartes</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+    button { padding: 10px 20px; margin: 20px; font-size: 16px; cursor: pointer; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 5px; margin: 3px; border-bottom: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+  <h1>Obrir un sobre</h1>
+  <button onclick="obrirSobre()">Obrir sobre</button>
+  <ul id="resultat"></ul>
+
+  <script>
+    async function obrirSobre() {
+      const res = await fetch("/sobre");
+      const cartes = await res.json();
+      document.getElementById("resultat").innerHTML =
+        cartes.map(c => `<li>${c}</li>`).join("");
+    }
+  </script>
+</body>
+</html>
