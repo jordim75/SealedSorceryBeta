@@ -32,7 +32,7 @@ def generar_sobre():
     else:  # 24% Unique
         sobre.append(random.choice(cartes_per_tipus["Unique"]))
         
-    # 11 Ordinary
+    # 10 Ordinary
     sobre.extend(random.sample(cartes_per_tipus["Ordinary"], 10))
 
     # 1 BoosterAvatar or BoosterSite
