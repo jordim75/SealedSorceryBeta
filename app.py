@@ -55,6 +55,10 @@ def sobres(n):
 def export_xlsx(jocs, sobres):
     wb = Workbook()
 
+    # Prioritat pels elements
+    elem_order = {"DB": 0, "Air": 1, "Earth": 2, "Fire": 3, "Water": 4}
+
+
     for jugador in range(1, jocs+1):
         if jugador == 1:
             ws = wb.active
@@ -75,8 +79,17 @@ def export_xlsx(jocs, sobres):
         spells  = [c["nom"] for c in cartes_jugador if c["cat"] == "Spell"]
         sites   = [c["nom"] for c in cartes_jugador if c["cat"] == "Site"]
 
+        # Ordenar les Spells
+        spells_sorted = sorted(
+            spells,
+            key=lambda c: (elem_order.get(c["elem"], 99), c["nom"])
+        )
+        # Només guardem el nom a la columna
+        spells_names = [c["nom"] for c in spells_sorted]
+
+
         # Posar-los en columnes
-        max_len = max(len(avatars), len(spells), len(sites))
+        max_len = max(len(avatars), len(spells_names), len(sites))
         for i in range(max_len):
             fila = [
                 avatars[i] if i < len(avatars) else "",
