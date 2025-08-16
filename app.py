@@ -1,6 +1,8 @@
 from flask import Flask, render_template, jsonify
 import pandas as pd
 import random
+import io
+from flask import Response
 
 app = Flask(__name__)
 
@@ -49,6 +51,26 @@ def index():
 @app.route("/sobre/<int:n>")
 def sobres(n):
     return jsonify([generar_sobre() for _ in range(n)])
+
+@app.route("/export_csv/<int:n>")
+def export_csv(n):
+    sobres = [generar_sobre() for _ in range(n)]
+
+    output = io.StringIO()
+    # Capçalera
+    output.write("Sobre,Posicio,Carta\n")
+    for i, sobre in enumerate(sobres, start=1):
+        for j, carta in enumerate(sobre, start=1):
+            output.write(f"{i},{j},{carta}\n")
+
+    csv_data = output.getvalue()
+    output.close()
+
+    return Response(
+        csv_data,
+        mimetype="text/csv",
+        headers={"Content-Disposition": "attachment;filename=sobres.csv"}
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)
