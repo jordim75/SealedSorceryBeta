@@ -25,6 +25,7 @@
   </select>
 
   <button onclick="obrirSobres()">Generate</button>
+  <button onclick="exportarCSV()">CSV Download</button>
 
   <div id="resultat"></div>
 
@@ -42,6 +43,11 @@
       });
 
       document.getElementById("resultat").innerHTML = html;
+      
+    }
+        function exportarCSV() {
+      const n = document.getElementById("quantitat").value;
+      window.location.href = `/export_csv/${n}`;
     }
   </script>
 </body>
