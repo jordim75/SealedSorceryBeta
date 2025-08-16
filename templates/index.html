@@ -34,27 +34,13 @@
     <option value="6">6</option>
   </select>
 
-  <button onclick="obrirSobres()">Generate</button>
+  
   <button onclick="exportarXLSX()">XLSX DownLoad</button>
 
   <div id="resultat"></div>
 
   <script>
-    async function obrirSobres() {
-      const n = document.getElementById("sobres").value;
-      const res = await fetch(`/sobre/${n}`);
-      const sobres = await res.json();
-
-      let html = "";
-      sobres.forEach((sobre, i) => {
-        html += `<div class="sobre"><h3>Sobres ${i+1}</h3><ul>`;
-        html += sobre.map(c => `<li>${c}</li>`).join("");
-        html += "</ul></div>";
-      });
-
-      document.getElementById("resultat").innerHTML = html;
-      
-    }
+    
          function exportarXLSX() {
     const j = document.getElementById("jugadors").value;
     const s = document.getElementById("sobres").value;
