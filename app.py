@@ -10,6 +10,7 @@ cartes_df = pd.read_csv("FontBeta.csv")
 # Separar cartes segons tipus
 cartes_per_tipus = {
     "Ordinary": cartes_df[cartes_df["tipus"] == "Ordinary"]["nom"].tolist(),
+    "Booster": cartes_df[cartes_df["tipus"] == "Booster"]["nom"].tolist(),
     "Exceptional": cartes_df[cartes_df["tipus"] == "Exceptional"]["nom"].tolist(),
     "Elite": cartes_df[cartes_df["tipus"] == "Elite"]["nom"].tolist(),
     "Unique": cartes_df[cartes_df["tipus"] == "Unique"]["nom"].tolist(),
