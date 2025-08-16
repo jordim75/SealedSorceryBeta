@@ -1,8 +1,6 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, Response, send_file
 import pandas as pd
-import random
-import io
-from flask import send_file
+import random, io
 from openpyxl import Workbook
 
 app = Flask(__name__)
@@ -12,12 +10,12 @@ cartes_df = pd.read_csv("FontBeta.csv")
 
 # Separar cartes segons tipus
 cartes_per_tipus = {
-    "Ordinary": cartes_df[cartes_df["tipus"] == "Ordinary"]["nom"].to_dict(orient="records"),
-    "Booster": cartes_df[cartes_df["tipus"] == "Booster"]["nom"].to_dict(orient="records"),
-    "BoosterAvatar": cartes_df[cartes_df["tipus"] == "BoosterAvatar"]["nom"].to_dict(orient="records"),
-    "Exceptional": cartes_df[cartes_df["tipus"] == "Exceptional"]["nom"].to_dict(orient="records"),
-    "Elite": cartes_df[cartes_df["tipus"] == "Elite"]["nom"].to_dict(orient="records"),
-    "Unique": cartes_df[cartes_df["tipus"] == "Unique"]["nom"].to_dict(orient="records"),
+    "Ordinary": cartes_df[cartes_df["tipus"] == "Ordinary"].to_dict(orient="records"),
+    "Booster": cartes_df[cartes_df["tipus"] == "Booster"].to_dict(orient="records"),
+    "BoosterAvatar": cartes_df[cartes_df["tipus"] == "BoosterAvatar"].to_dict(orient="records"),
+    "Exceptional": cartes_df[cartes_df["tipus"] == "Exceptional"].to_dict(orient="records"),
+    "Elite": cartes_df[cartes_df["tipus"] == "Elite"].to_dict(orient="records"),
+    "Unique": cartes_df[cartes_df["tipus"] == "Unique"].to_dict(orient="records"),
 }
 
 def generar_sobre():
