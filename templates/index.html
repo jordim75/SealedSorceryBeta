@@ -2,25 +2,46 @@
 <html lang="ca">
 <head>
   <meta charset="UTF-8">
-  <title>Generate a Beta Booster Pack</title>
+  <title>Obrir sobres de cartes</title>
   <style>
     body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-    button { padding: 10px 20px; margin: 20px; font-size: 16px; cursor: pointer; }
+    select, button { padding: 10px; font-size: 16px; margin: 10px; }
+    .sobre { border: 1px solid #ccc; border-radius: 8px; margin: 10px; padding: 10px; display: inline-block; vertical-align: top; }
     ul { list-style: none; padding: 0; }
-    li { padding: 5px; margin: 3px; border-bottom: 1px solid #ddd; }
+    li { padding: 3px; margin: 2px; border-bottom: 1px solid #eee; }
   </style>
 </head>
 <body>
-  <h1>Generate a Beta Booster Pack</h1>
-  <button onclick="obrirSobre()">Generate it</button>
-  <ul id="resultat"></ul>
+  <h1>Generate Booster Packs</h1>
+
+  <label for="quantitat"># of Booster Packs:</label>
+  <select id="quantitat">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+  </select>
+
+  <button onclick="obrirSobres()">Generate</button>
+
+  <div id="resultat"></div>
 
   <script>
-    async function obrirSobre() {
-      const res = await fetch("/sobre");
-      const cartes = await res.json();
-      document.getElementById("resultat").innerHTML =
-        cartes.map(c => `<li>${c}</li>`).join("");
+    async function obrirSobres() {
+      const n = document.getElementById("quantitat").value;
+      const res = await fetch(`/sobre/${n}`);
+      const sobres = await res.json();
+
+      let html = "";
+      sobres.forEach((sobre, i) => {
+        html += `<div class="sobre"><h3>Sobres ${i+1}</h3><ul>`;
+        html += sobre.map(c => `<li>${c}</li>`).join("");
+        html += "</ul></div>";
+      });
+
+      document.getElementById("resultat").innerHTML = html;
     }
   </script>
 </body>
