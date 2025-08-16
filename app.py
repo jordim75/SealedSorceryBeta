@@ -74,17 +74,18 @@ def export_xlsx(jocs, sobres):
         for _ in range(sobres):
             cartes_jugador.extend(generar_sobre())
 
-        # Filtrar per categoria
+        # Filtrar mantenint diccionaris sencers
         avatars = [c["nom"] for c in cartes_jugador if c["cat"] == "Avatar"]
-        spells  = [c["nom"] for c in cartes_jugador if c["cat"] == "Spell"]
+        spells  = [c for c in cartes_jugador if c["cat"] == "Spell"]
         sites   = [c["nom"] for c in cartes_jugador if c["cat"] == "Site"]
 
-        # Ordenar les Spells
+        # Ordenar per element i després per nom
         spells_sorted = sorted(
             spells,
             key=lambda c: (elem_order.get(c["elem"], 99), c["nom"])
         )
-        # Només guardem el nom a la columna
+
+        # Només agafem el nom per la columna Excel
         spells_names = [c["nom"] for c in spells_sorted]
 
 
